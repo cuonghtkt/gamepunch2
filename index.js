@@ -35,6 +35,7 @@ var listPlayer = [];
 io.sockets.on('connection', (socket) => {
     //create new player
     var player = Bodies.circle(0, 0, 125, { name: nanoid() });
+    console.log("player:" + player.name + "connection...");
     Composite.add(engine.world, [player]);
     io.emit('insert', player.name);
     //create orther player
