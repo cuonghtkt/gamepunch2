@@ -71,9 +71,7 @@ function collision(event) {
         io.emit('move', pairs[i].bodyB.name + "|" + (pairs[i].bodyB.position.x / 100) + "|" + (pairs[i].bodyB.position.y / 100));
     }
 }
-app.get('/', (req, res) => {
-    res.sendFile(__dirname + '/test.html');
-});
+app.get('/', (req, res) => {});
 http.listen(process.env.PORT || 3000, () => {
     console.log('Connected at 3000');
 });
