@@ -33,6 +33,7 @@ var listBullet = [];
 io.sockets.on('connection', (socket) => {
     //create new player
     var player = Bodies.circle(0, 0, 125, { name: nanoid(), density: 0.5, label: "player" });
+    const oldPosition = {};
     console.log("player:" + player.name + "connection...");
     Composite.add(engine.world, [player]);
     io.emit('insert', player.name);
@@ -45,7 +46,7 @@ io.sockets.on('connection', (socket) => {
 
     socket.on('move', (dataGet) => {
         const data = dataGet.split('|');
-        const oldPosition = { x: player.position.x, y: player.position.y };
+        oldPosition = { x: player.position.x, y: player.position.y };
         Matter.Body.translate(player, { x: parseFloat(data[0]) * 4, y: parseFloat(data[1]) * 4 });
         const deltaPosition = { x: player.position.x - oldPosition.x, y: player.position.y - oldPosition.y }
         io.emit('move', player.name + "|" + deltaPosition.x + "|" + deltaPosition.y);
