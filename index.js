@@ -46,11 +46,7 @@ io.sockets.on('connection', (socket) => {
     socket.on('move', (dataGet) => {
         const data = dataGet.split('|');
         Matter.Body.translate(player, { x: parseFloat(data[0]) * 4, y: parseFloat(data[1]) * 4 });
-        io.emit('move', player.name + "|" + (player.position.x / 100) + "|" + (player.position.y / 100));
-    });
-    //test frame
-    socket.on('testframe', (dataGet) => {
-        io.emit('testframe', dataGet);
+        io.emit('move', player.name + "|" + (player.position.x / 100) + "|" + (player.position.y / 100) + "|" + dataGet[0]);
     });
     socket.on('attack', (dataGet) => {
         var degree = parseFloat(dataGet);
