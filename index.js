@@ -48,6 +48,10 @@ io.sockets.on('connection', (socket) => {
         Matter.Body.translate(player, { x: parseFloat(data[0]) * 4, y: parseFloat(data[1]) * 4 });
         io.emit('move', player.name + "|" + (player.position.x / 100) + "|" + (player.position.y / 100));
     });
+    //test frame
+    socket.on('testframe', (dataGet) => {
+        io.emit('testframe', dataGet);
+    });
     socket.on('attack', (dataGet) => {
         var degree = parseFloat(dataGet);
         var radians = (degree * (Math.PI / 180));

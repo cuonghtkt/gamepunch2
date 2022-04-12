@@ -2782,27 +2782,33 @@
         });
         // create two boxes and a ground
         var boxA = Bodies.circle(500, 100, 30, {
-            density: 0.00001
+            density: 0.00001,
+            isSensor: true, // trigger
+            render: {
+                sprite: {
+                    texture: './box.jpg'
+                }
+            }
         });
-        var boxB = Bodies.rectangle(300, 100, 50, 60, {
+        var boxB = Bodies.rectangle(500, 70, 50, 60, {
             density: 0.00001
         });
         var ground = Bodies.rectangle(400, 610, 810, 60, {
             isStatic: true,
             name: "a"
         });
-        engine.world.gravity.y = 0;
-        var degree = 90 - 90;
-        var radians = degree * (Math.PI / 180);
+        // engine.world.gravity.y = 0;
+        // var degree = 90 - 90;
+        // var radians = degree * (Math.PI / 180);
         // add all of the bodies to the world
-        Composite.add(engine.world, [boxA, ground]);
-        Body.applyForce(boxA, {
-            x: boxA.position.x,
-            y: boxA.position.y
-        }, {
-            x: Math.sin(radians) / 10000 * -1,
-            y: Math.cos(radians) / 10000
-        });
+        Composite.add(engine.world, [boxA, boxB, ground]);
+        // Body.applyForce(boxA, {
+        //     x: boxA.position.x,
+        //     y: boxA.position.y
+        // }, {
+        //     x: Math.sin(radians) / 10000 * -1,
+        //     y: Math.cos(radians) / 10000
+        // });
         // run the renderer
         Render.run(render);
 
