@@ -47,7 +47,7 @@ io.sockets.on('connection', (socket) => {
         var data = dataGet.split('|');
         //
 
-        var timeSpan = { timeSpan: GetTimestamp(), x: player.position.x / 100 + "", y: player.position.y / 100 + "" }
+        var timeSpan = { timeSpan: data[2], x: player.position.x / 100 + "", y: player.position.y / 100 + "" }
         listTimeSpan.splice(0, 0, timeSpan);
         if (listTimeSpan.length >= 50) {
             listTimeSpan.splice(50, 1);
