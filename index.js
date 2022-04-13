@@ -47,7 +47,7 @@ io.sockets.on('connection', (socket) => {
         var data = dataGet.split('|');
         //
 
-        var timeSpan = { timeSpan: data[2], x: player.position.x / 100 + "", y: player.position.y / 100 + "" }
+        var timeSpan = { timeSpan: GetTimestamp(), x: player.position.x / 100 + "", y: player.position.y / 100 + "" }
         console.log("test time" + GetTimestamp());
         listTimeSpan.splice(0, 0, timeSpan);
         if (listTimeSpan.length >= 50) {
@@ -113,19 +113,21 @@ function CollisionEnter(event) {
 }
 
 function GetTimestamp() {
-    var d = new Date();
-    var milisecond = d.getMilliseconds() + "";
-    if (milisecond.length < 2) {
-        milisecond = "00" + milisecond;
-    } else if (milisecond.length < 3) {
-        milisecond = "0" + milisecond;
-    }
-    var month = d.getMonth() + "";
-    if (month.length < 2) {
-        month = "0" + month;
-    }
-    var timeStamp = d.getFullYear() + month + d.getDate() + d.toLocaleTimeString().replace(":", "").replace(":", "") + milisecond;
-    return timeStamp;
+    // var d = new Date();
+    // var milisecond = d.getMilliseconds() + "";
+    // if (milisecond.length < 2) {
+    //     milisecond = "00" + milisecond;
+    // } else if (milisecond.length < 3) {
+    //     milisecond = "0" + milisecond;
+    // }
+    // var month = d.getMonth() + "";
+    // if (month.length < 2) {
+    //     month = "0" + month;
+    // }
+    // var timeStamp = d.getFullYear() + month + d.getDate() + d.toLocaleTimeString().replace(":", "").replace(":", "") + milisecond;
+
+    const secondsSinceEpoch = Math.round(Date.now())
+    return secondsSinceEpoch;
 }
 
 function WaitDestroyBullet(dataGet) {
