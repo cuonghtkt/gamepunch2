@@ -124,7 +124,7 @@ function GetTimestamp() {
     if (month.length < 2) {
         month = "0" + month;
     }
-    var timeStamp = d.getFullYear() + month + d.getDate() + d.toLocaleTimeString().replace(":", "").replace(":", "") + milisecond.replace(" AM");
+    var timeStamp = d.getFullYear() + month + d.getDate() + d.toLocaleTimeString().replace(":", "").replace(":", "") + milisecond.replace(" AM", "");
     return timeStamp;
 }
 
