@@ -48,7 +48,6 @@ io.sockets.on('connection', (socket) => {
         //
 
         var timeSpan = { timeSpan: GetTimestamp(), x: player.position.x / 100 + "", y: player.position.y / 100 + "" }
-        console.log("test time" + GetTimestamp());
         listTimeSpan.splice(0, 0, timeSpan);
         if (listTimeSpan.length >= 50) {
             listTimeSpan.splice(50, 1);
