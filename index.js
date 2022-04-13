@@ -43,13 +43,11 @@ io.sockets.on('connection', (socket) => {
         socket.emit('move', element.name + "|" + element.position.x + "|" + element.position.y);
     });
     listPlayer.push(player);
-    //50 phan tu gom x y time
     socket.on('move', (dataGet) => {
         var data = dataGet.split('|');
         //
-        const d = new Date();
 
-        var timeSpan = { timeSpan: d.getMinutes() + ":" + d.getSeconds() + ":" + d.getMilliseconds(), x: player.position.x / 100 + "", y: player.position.y / 100 + "" }
+        var timeSpan = { timeSpan: GetTimestamp(), x: player.position.x / 100 + "", y: player.position.y / 100 + "" }
         listTimeSpan.splice(0, 0, timeSpan);
         if (listTimeSpan.length >= 50) {
             listTimeSpan.splice(50, 1);
@@ -111,6 +109,22 @@ function CollisionEnter(event) {
             DeleteBullet(pairs[i].bodyB.name)
         }
     }
+}
+
+function GetTimestamp() {
+    var d = new Date();
+    var milisecond = d.getMilliseconds() + "";
+    if (milisecond.length < 2) {
+        milisecond = "00" + milisecond;
+    } else if (milisecond.length < 3) {
+        milisecond = "0" + milisecond;
+    }
+    var month = d.getMonth() + "";
+    if (month.length < 2) {
+        month = "0" + month;
+    }
+    var timeStamp = d.getFullYear() + month + d.getDate() + d.toLocaleTimeString().replace(":", "").replace(":", "") + milisecond;
+    return timeStamp;
 }
 
 function WaitDestroyBullet(dataGet) {
