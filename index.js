@@ -47,7 +47,7 @@ io.sockets.on('connection', (socket) => {
         var data = dataGet.split('|');
         //
 
-        var timeSpan = { timeSpan: GetTimestamp(), x: player.position.x / 100 + "", y: player.position.y / 100 + "" }
+        var timeSpan = { timeSpan: data[2], x: player.position.x / 100 + "", y: player.position.y / 100 + "" }
         console.log("test time" + GetTimestamp());
         listTimeSpan.splice(0, 0, timeSpan);
         if (listTimeSpan.length >= 50) {
@@ -124,7 +124,7 @@ function GetTimestamp() {
     if (month.length < 2) {
         month = "0" + month;
     }
-    var timeStamp = d.getFullYear() + month + d.getDate() + d.toLocaleTimeString().replace(":", "").replace(":", "") + milisecond.replace(" AM", "");
+    var timeStamp = d.getFullYear() + month + d.getDate() + d.toLocaleTimeString().replace(":", "").replace(":", "") + milisecond;
     return timeStamp;
 }
 
