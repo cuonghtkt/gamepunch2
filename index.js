@@ -45,19 +45,20 @@ io.sockets.on('connection', (socket) => {
     listPlayer.push(player);
     socket.on('move', (dataGet) => {
         var data = dataGet.split('|');
-        //
+        //lag 
+        // var timeSpan = { timeSpan: GetTimestamp(), x: player.position.x / 100 + "", y: player.position.y / 100 + "" }
+        // listTimeSpan.splice(0, 0, timeSpan);
+        // if (listTimeSpan.length >= 50) {
+        //     listTimeSpan.splice(50, 1);
+        // }
+        // //
 
-        var timeSpan = { timeSpan: GetTimestamp(), x: player.position.x / 100 + "", y: player.position.y / 100 + "" }
-        listTimeSpan.splice(0, 0, timeSpan);
-        if (listTimeSpan.length >= 50) {
-            listTimeSpan.splice(50, 1);
-        }
-        //
+        // var oldPosition = { x: player.position.x, y: player.position.y };
+        // Matter.Body.translate(player, { x: parseFloat(data[0]) * 4, y: parseFloat(data[1]) * 4 });
+        // var deltaPosition = { x: player.position.x - oldPosition.x, y: player.position.y - oldPosition.y }
 
-        var oldPosition = { x: player.position.x, y: player.position.y };
-        Matter.Body.translate(player, { x: parseFloat(data[0]) * 4, y: parseFloat(data[1]) * 4 });
-        var deltaPosition = { x: player.position.x - oldPosition.x, y: player.position.y - oldPosition.y }
-        io.emit('move', player.name + "|" + deltaPosition.x + "|" + deltaPosition.y + "|" + JSON.stringify(listTimeSpan[0]));
+
+        io.emit('move', player.name + "|" + player.x + "|" + player.y); //+ "|" + JSON.stringify(listTimeSpan[0])
         // io.emit('move', player.name + "|" + (player.position.x / 100) + "|" + (player.position.y / 100));
     });
     socket.on('attack', (dataGet) => {
