@@ -54,7 +54,7 @@ io.sockets.on('connection', (socket) => {
         // //
 
         // var oldPosition = { x: player.position.x, y: player.position.y };
-        // Matter.Body.translate(player, { x: parseFloat(data[0]) * 4, y: parseFloat(data[1]) * 4 });
+        Matter.Body.translate(player, { x: parseFloat(data[0]) * 4, y: parseFloat(data[1]) * 4 });
         // var deltaPosition = { x: player.position.x - oldPosition.x, y: player.position.y - oldPosition.y }
 
 
